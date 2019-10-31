@@ -1,0 +1,47 @@
+**Q1**
+
+The Chinook database contains all invoices from the beginning of 2009 till the end of 2013. The employees at Chinook store are interested in seeing all invoices that happened in 2013 only. Using the Invoice table, write a query that returns all the info of the invoices in 2013.
+
+select * from Invoice
+where InvoiceDate between datetime('2013-01-01 00:00:00') and datetime('2013-12-31 00:00:00');
+
+**Q2**
+
+The Chinook team decided to run a marketing campaign in Brazil, Canada, india, and Sweden. Using the customer table, write a query that returns the first name, last name, and country for all customers from the 4 countries.
+
+select FirstName,LastName,Country
+from Customer
+where  Country = 'India' OR
+       Country =   'Canada' OR 
+       Country ='Sweden' OR
+       Country =  'Brazil'
+**Q3**
+
+Using the Track and Album tables, write a query that returns all the songs that start with the letter 'A' and the composer field is not empty. Your query should return the name of the song, the name of the composer, and the title of the album.
+ 
+ select Track.Name,
+       Track.Composer,
+       Album.Title
+from Album inner join Track
+on   Album.AlbumId = Track.AlbumId
+ 
+WHERE Track.Name LIKE 'A%' AND
+      Track.Composer NOT LIKE 'None'
+      
+**Q4**
+
+The Chinook team would like to throw a promotional Music Festival for their top 10 cutomers who have spent the most in a single invoice. Write a query that returns the first name, last name, and invoice total for the top 10 invoices ordered by invoice total descending.
+
+select Customer.FirstName,
+       Customer.LastName,
+       Invoice.Total
+ 
+from Customer inner join Invoice
+on   Invoice.CustomerId = Customer.CustomerId
+ 
+ORDER BY  Invoice.Total DESC
+LIMIT 10
+
+
+
+      
